@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#box{
+    height: 300px;
+    width:350px;
+    border: 2px solid rgba(188, 187, 185, 0.392);
+    box-shadow: 5px 5px 5px rgb(230, 227, 227);
+    margin:575px;
+    text-align: center;
+    border-radius: 35px;
+    margin-top: 200px;
+}
+#con{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+#btn{
+    background-color: green;
+    color: azure;
+    height: 30px;
+    width: 100px;
+    font-size: 18px;
+}
+#aadharInput{
+    height: 30px;
+     width: 300px;
+}
+
+    </style>
+</head>
+<body>
+     <div id="box">
+        <div id="con"><b>Mask Aadhaar Number</b> </div>
+        <br><br>
+        <form >
+            <input type="text" id="aadharInput" placeholder="Enter 12-digit Aadhaar Number...." maxlength="12" required oninput="enforceDigits(this)">
+            <br><br>
+            <button id="btn" onclick="maskAadhaar()">submit</button>
+            
+         </form>
+         <div id="output"></div>
+     </div>
+<script>
+        function enforceDigits(input) {
+    input.value = input.value.replace(/\D/g, '').slice(0, 12); 
+}
+    function maskAadhaar(){
+    const input=document.getElementById("aadharInput").value.trim();
+    const output=document.getElementById("output");
+    if(/^\d{12}$/.test(input)){
+        const masked="" + input.slice(-4);
+        output.innerHTML="Masked Aadhaar:"+masked;
+        alert("Submitted");
+    }else{
+        output.innerText="Please enter a valid 12-digit Aadhaar number.";
+    }
+};
+</script>
+</body>
+</html>
